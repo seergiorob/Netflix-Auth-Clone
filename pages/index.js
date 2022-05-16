@@ -1,25 +1,26 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 
 
 export default function Home() {
 
-  const [session, setSession] = useState();
+  // const [session, setSession] = useState();
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    (async() => {
-      const session = await getSession()
-      setSession(session)
-      })();
+  //   (async() => {
+  //     const session = await getSession()
+  //     setSession(session)
+  //     })();
 
     
-  },[])
+  // },[])
 
-  console.log(session, 'hu' )
+  // console.log(session, 'hu' )
+
+  const {data, status} = useSession()
+  console.log(data, status)
 
   return (
     <div className="bg-black flex flex-col items-center justify-center min-h-screen"
@@ -52,7 +53,7 @@ export default function Home() {
           </svg>
         </div>
         <div>
-          {!session ? (
+          {!data ? (
             <button
               onClick={() => signIn('google')}
               className="flex items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded"
@@ -60,9 +61,9 @@ export default function Home() {
               Sign In
             </button>
             ) : (
-            <div className="flex items-center justify-center">
-            <img src={session.user.image} className="w-10 rounded-full" />
-            <h4 className="px-3 text-white " >{session.user.name}</h4>
+            <div className="sm:flex items-center justify-center hidden ">
+            <img src={data.user.image} className="w-10 rounded-full" />
+            <h4 className="px-3 text-white " >{data.user.name}</h4>
             <button
               className="flex items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded"
               onClick={() => signOut('google')}
@@ -74,16 +75,16 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col items-center justify-center flex-1 px-2">
-        <h1 className="text-4xl font-bold text-white text-center max-w-lg">
+        <h1 className="text-2xl sm:text-4xl font-medium text-white text-center max-w-lg">
           Unlimited movies, TV shows, and more.
         </h1>
-        <h2 className="text-2xl text-white mt-4 mb-8">Watch anywhere. Cancel anytime</h2>
-        <p className="text-white text-lg">Ready to watch? Enter your email to create or restart your membership</p>
-        <div className="flex  mt-4">
-          <input className="bg-white p-4 min-w-[400px] " placeholder="Email adress"/>
-          <button className="flex items-center  bg-[#e50914] px-8 text-white ">Get Started 
-            <svg class="w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        <h2 className="text-lg sm:text-2xl text-white mt-4 mb-8">Watch anywhere. Cancel anytime</h2>
+        <p className="flex items-center justify-center text-white text-xs sm:text-lg p-2 sm:p-0">Ready to watch? Enter your email to create or restart your membership</p>
+        <div className="flex mt-4">
+          <input className="bg-white p-4 min-w-[150px] sm:min-w-[400px] " placeholder="Email adress"/>
+          <button className="flex items-center justify-center text-xs sm:text-lg bg-[#e50914] px-1 sm:px-8 text-white w-[100px] sm:w-[auto]">Get Started 
+            <svg className="w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </button>
         </div>
