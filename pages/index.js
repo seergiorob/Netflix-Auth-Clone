@@ -79,7 +79,7 @@ export default function Home() {
           Unlimited movies, TV shows, and more.
         </h1>
         <h2 className="text-lg sm:text-2xl text-white mt-4 mb-8">Watch anywhere. Cancel anytime</h2>
-        <p className="flex items-center justify-center text-white text-xs sm:text-lg p-2 sm:p-0">Ready to watch? Enter your email to create or restart your membership</p>
+        <p className="flex text-center items-center justify-center text-white text-xs sm:text-lg p-2 sm:p-0">Ready to watch? Enter your email to create or restart your membership</p>
         <div className="flex mt-4">
           <input className="bg-white p-4 min-w-[150px] sm:min-w-[400px] " placeholder="Email adress"/>
           <button className="flex items-center justify-center text-xs sm:text-lg bg-[#e50914] px-1 sm:px-8 text-white w-[100px] sm:w-[auto]">Get Started 
